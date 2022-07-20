@@ -9,7 +9,7 @@ namespace Alura.Estacionamento.Modelos
 {
     public class Patio
     {
-       
+
         public Patio()
         {
             Faturado = 0;
@@ -18,7 +18,7 @@ namespace Alura.Estacionamento.Modelos
         private List<Veiculo> veiculos;
         private double faturado;
         public double Faturado { get => faturado; set => faturado = value; }
-        public List<Veiculo> Veiculos { get => veiculos; set => veiculos = value; }       
+        public List<Veiculo> Veiculos { get => veiculos; set => veiculos = value; }
         public double TotalFaturado()
         {
             return this.Faturado;
@@ -32,14 +32,14 @@ namespace Alura.Estacionamento.Modelos
 
         public void RegistrarEntradaVeiculo(Veiculo veiculo)
         {
-            veiculo.HoraEntrada = DateTime.Now;            
-            this.Veiculos.Add(veiculo);            
+            veiculo.HoraEntrada = DateTime.Now;
+            this.Veiculos.Add(veiculo);
         }
 
         public string RegistrarSaidaVeiculo(String placa)
         {
             Veiculo procurado = null;
-            string informacao=string.Empty;
+            string informacao = string.Empty;
 
             foreach (Veiculo v in this.Veiculos)
             {
@@ -61,8 +61,8 @@ namespace Alura.Estacionamento.Modelos
                         valorASerCobrado = Math.Ceiling(tempoPermanencia.TotalHours) * 1;
                     }
                     informacao = string.Format(" Hora de entrada: {0: HH: mm: ss}\n " +
-                                             "Hora de saída: {1: HH:mm:ss}\n "      +
-                                             "Permanência: {2: HH:mm:ss} \n "       +
+                                             "Hora de saída: {1: HH:mm:ss}\n " +
+                                             "Permanência: {2: HH:mm:ss} \n " +
                                              "Valor a pagar: {3:c}", v.HoraEntrada, v.HoraSaida, new DateTime().Add(tempoPermanencia), valorASerCobrado);
                     procurado = v;
                     this.Faturado = this.Faturado + valorASerCobrado;
@@ -82,9 +82,12 @@ namespace Alura.Estacionamento.Modelos
             return informacao;
         }
 
-        
-
-       
-    
+        public Veiculo PesquisaVeiculo(string placa)
+        {
+            var encontrado = (from veiculo in this.veiculos 
+                              where veiculo.Placa == placa 
+                              select veiculo).SingleOrDefault();
+            return encontrado;
+        }
     }
 }

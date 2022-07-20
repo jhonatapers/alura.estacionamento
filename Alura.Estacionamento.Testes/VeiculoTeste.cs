@@ -53,5 +53,6 @@ namespace Alura.Estacionamento.Testes
             Assert.Equal(modelo.VelocidadeAtual, veiculo.VelocidadeAtual);
         }
 
+
     }
 }
