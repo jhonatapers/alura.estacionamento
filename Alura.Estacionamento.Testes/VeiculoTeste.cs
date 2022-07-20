@@ -7,33 +7,31 @@ namespace Alura.Estacionamento.Testes
 {
     public class VeiculoTeste
     {
-        [Fact(DisplayName ="Teste n°1")]
-        [Trait("Funcionalidade", "Acelerar")]
-        public void TestaVeiculoAcelerar()
+        [Fact]   
+        public void TestaVeiculoAcelerarComParametro10()
         {
             var veiculo = new Veiculo();
             veiculo.Acelerar(10);
             Assert.Equal(100, veiculo.VelocidadeAtual);
         }
 
-        [Fact(DisplayName = "Teste n°2")]
-        [Trait("Funcionalidade", "Frear")]
-        public void TestaVeiculoFrear()
+        [Fact]
+        public void TestaVeiculoFrearComParametro10()
         {
             var veiculo = new Veiculo();
             veiculo.Frear(10);
             Assert.Equal(-150, veiculo.VelocidadeAtual);
         }
 
-        [Fact(DisplayName = "Teste n°3")]
-        public void TestarTipoVeiculo() 
+        [Fact]
+        public void TestarTipoVeiculoAutomovel() 
         {
             var veiculo = new Veiculo();
             Assert.Equal(TipoVeiculo.Automovel, veiculo.Tipo);
         }
 
-        [Fact(DisplayName = "Teste n°4", Skip ="Teste ainda não immplementado. Ignorar")]
-        public void ValidaNomeProprietario() 
+        [Fact(Skip ="Teste ainda não immplementado. Ignorar")]
+        public void ValidaNomeProprietarioDoVeiculo() 
         {
 
         }
@@ -53,6 +51,25 @@ namespace Alura.Estacionamento.Testes
             Assert.Equal(modelo.VelocidadeAtual, veiculo.VelocidadeAtual);
         }
 
+        [Fact]
+        public void FichaDeInformacaoDoVeiculo() 
+        {
+            //Arrange
+            var carro = new Veiculo()
+            {
+                Proprietario = "Carlos Silva",
+                Tipo = TipoVeiculo.Automovel,
+                Cor = "Verde",
+                Modelo = "Variante",
+                Placa = "ZAP-7419"
+            };
+
+            //Act
+            string dados = carro.ToString();
+
+            //Assert
+            Assert.Contains("Ficha do Veículo:", dados);
+        }
 
     }
 }
