@@ -8,6 +8,7 @@ namespace Alura.Estacionamento.Testes
     public class VeiculoTeste
     {
         [Fact(DisplayName ="Teste n°1")]
+        [Trait("Funcionalidade", "Acelerar")]
         public void TestaVeiculoAcelerar()
         {
             var veiculo = new Veiculo();
@@ -16,6 +17,7 @@ namespace Alura.Estacionamento.Testes
         }
 
         [Fact(DisplayName = "Teste n°2")]
+        [Trait("Funcionalidade", "Frear")]
         public void TestaVeiculoFrear()
         {
             var veiculo = new Veiculo();
