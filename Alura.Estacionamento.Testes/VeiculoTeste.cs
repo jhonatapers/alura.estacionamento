@@ -37,5 +37,21 @@ namespace Alura.Estacionamento.Testes
         {
 
         }
+
+        [Theory]
+        [ClassData(typeof(Veiculo))]
+        public void TestaVeiculoClass(Veiculo modelo)
+        {
+            //Arrange
+            var veiculo = new Veiculo();
+
+            //Act
+            veiculo.Acelerar(10);
+            modelo.Acelerar(10);
+
+            //Assert
+            Assert.Equal(modelo.VelocidadeAtual, veiculo.VelocidadeAtual);
+        }
+
     }
 }
