@@ -7,10 +7,18 @@ namespace Alura.Estacionamento.Testes
 {
     public class VeiculoTeste
     {
-        [Fact]   
+
+        private Veiculo veiculo;
+
+        public VeiculoTeste()
+        {
+            veiculo = new Veiculo();
+        }
+
+        [Fact]
         public void TestaVeiculoAcelerarComParametro10()
         {
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Acelerar(10);
             Assert.Equal(100, veiculo.VelocidadeAtual);
         }
@@ -18,20 +26,20 @@ namespace Alura.Estacionamento.Testes
         [Fact]
         public void TestaVeiculoFrearComParametro10()
         {
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Frear(10);
             Assert.Equal(-150, veiculo.VelocidadeAtual);
         }
 
         [Fact]
-        public void TestarTipoVeiculoAutomovel() 
+        public void TestarTipoVeiculoAutomovel()
         {
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             Assert.Equal(TipoVeiculo.Automovel, veiculo.Tipo);
         }
 
-        [Fact(Skip ="Teste ainda não immplementado. Ignorar")]
-        public void ValidaNomeProprietarioDoVeiculo() 
+        [Fact(Skip = "Teste ainda não immplementado. Ignorar")]
+        public void ValidaNomeProprietarioDoVeiculo()
         {
 
         }
@@ -41,7 +49,7 @@ namespace Alura.Estacionamento.Testes
         public void TestaVeiculoClass(Veiculo modelo)
         {
             //Arrange
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
 
             //Act
             veiculo.Acelerar(10);
@@ -52,20 +60,17 @@ namespace Alura.Estacionamento.Testes
         }
 
         [Fact]
-        public void FichaDeInformacaoDoVeiculo() 
+        public void FichaDeInformacaoDoVeiculo()
         {
             //Arrange
-            var carro = new Veiculo()
-            {
-                Proprietario = "Carlos Silva",
-                Tipo = TipoVeiculo.Automovel,
-                Cor = "Verde",
-                Modelo = "Variante",
-                Placa = "ZAP-7419"
-            };
+            veiculo.Proprietario = "Carlos Silva";
+            veiculo.Tipo = TipoVeiculo.Automovel;
+            veiculo.Cor = "Verde";
+            veiculo.Modelo = "Variante";
+            veiculo.Placa = "ZAP-7419";
 
             //Act
-            string dados = carro.ToString();
+            string dados = veiculo.ToString();
 
             //Assert
             Assert.Contains("Ficha do Veículo:", dados);
