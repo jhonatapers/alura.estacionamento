@@ -5,24 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Alura.Estacionamento.Testes
 {
-    public class PatioTeste
+    public class PatioTeste : IDisposable
     {
+
+        private Veiculo veiculo;
+        private Patio estacionamento;
+        public ITestOutputHelper SaidaConsoleTeste;
+
+        public PatioTeste(ITestOutputHelper _saidaConsoleTeste) 
+        {
+            SaidaConsoleTeste = _saidaConsoleTeste;
+            SaidaConsoleTeste.WriteLine("Construtor Invocado.");
+            veiculo = new Veiculo();
+        }
+
         [Fact]
         public void ValidaFaturamentoDoEstacionamentoComUmVeiculo()
         {
             //Arrange
             var estacionamento = new Patio();
-            var veiculo = new Veiculo()
-            {
-                Proprietario = "Andre Silva",
-                Tipo = TipoVeiculo.Automovel,
-                Cor = "Verde",
-                Modelo = "Fusca",
-                Placa = "asd-9999"
-            };
+            veiculo.Proprietario = "Andre Silva";
+            veiculo.Tipo = TipoVeiculo.Automovel;
+            veiculo.Cor = "Verde";
+            veiculo.Modelo = "Fusca";
+            veiculo.Placa = "asd-9999";
 
             estacionamento.RegistrarEntradaVeiculo(veiculo);
             estacionamento.RegistrarSaidaVeiculo(veiculo.Placa);
@@ -45,13 +55,10 @@ namespace Alura.Estacionamento.Testes
         {
             //Arange
             var estacionamento = new Patio();
-            var veiculo = new Veiculo()
-            {
-                Proprietario = proprietario,
-                Placa = placa,
-                Cor = cor,
-                Modelo = modelo
-            };
+            veiculo.Proprietario = proprietario;
+            veiculo.Placa = placa;
+            veiculo.Cor = cor;
+            veiculo.Modelo = modelo;
 
             estacionamento.RegistrarEntradaVeiculo(veiculo);
             estacionamento.RegistrarSaidaVeiculo(veiculo.Placa);
@@ -73,13 +80,10 @@ namespace Alura.Estacionamento.Testes
         {
             //Arange
             var estacionamento = new Patio();
-            var veiculo = new Veiculo()
-            {
-                Proprietario = proprietario,
-                Placa = placa,
-                Cor = cor,
-                Modelo = modelo
-            };
+            veiculo.Proprietario = proprietario;
+            veiculo.Placa = placa;
+            veiculo.Cor = cor;
+            veiculo.Modelo = modelo;
 
             estacionamento.RegistrarEntradaVeiculo(veiculo);
 
@@ -95,14 +99,13 @@ namespace Alura.Estacionamento.Testes
         {
             //Arrange
             var estacionamento = new Patio();
-            var veiculo = new Veiculo()
-            {
-                Proprietario = "Andre Silva",
-                Tipo = TipoVeiculo.Automovel,
-                Cor = "Verde",
-                Modelo = "Opala",
-                Placa = "asd-9999"
-            };
+            veiculo.Proprietario = "Andre Silva";
+            veiculo.Tipo = TipoVeiculo.Automovel;
+            veiculo.Placa = "asd-9999";
+            veiculo.Cor = "Verde";
+            veiculo.Modelo = "Opala";
+
+
             estacionamento.RegistrarEntradaVeiculo(veiculo);
 
             var veiculoAlterado = new Veiculo()
@@ -120,6 +123,11 @@ namespace Alura.Estacionamento.Testes
             //Assert
             Assert.Equal(veiculoAlterado.Cor, alterado.Cor);
 
+        }
+
+        public void Dispose()
+        {
+            SaidaConsoleTeste.WriteLine("Execução do Cleanup: Limpando os objetos.");
         }
     }
 }
