@@ -1,11 +1,11 @@
 using System;
 using Xunit;
 using Alura.Estacionamento.Modelos;
-using Alura.Estacionamento.Alura.Estacionamento.Modelos;
+using Alura.Estacionamento.Modelos;
 
 namespace Alura.Estacionamento.Testes
 {
-    public class VeiculoTestes
+    public class VeiculoTeste
     {
         [Fact]
         public void TestaVeiculoAcelerar()

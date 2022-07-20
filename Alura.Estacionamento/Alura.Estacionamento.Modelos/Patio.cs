@@ -1,10 +1,9 @@
-﻿using Alura.Estacionamento.Alura.Estacionamento.Modelos;
-using Alura.Estacionamento.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Alura.Estacionamento.Modelos;
 
 namespace Alura.Estacionamento.Modelos
 {
